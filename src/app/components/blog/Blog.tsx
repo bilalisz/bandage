@@ -40,10 +40,10 @@ const Blog: React.FC<PropsType> = ({ image }) => {
           <TypographyBody2 className="tw-text-xs">New</TypographyBody2>
         </Box>
         <TypographyHeadingH3 className="tw-text-lg">
-          Loudest à la Madison #1 (L'integral)
+          Loudest à la Madison #1 (L integral)
         </TypographyHeadingH3>
         <TypographyBody2 className="tw-text-xs tw-w-44 tw-text-app-gray-700">
-          We focus on ergonomics and meeting you where you work. It's only a
+          We focus on ergonomics and meeting you where you work. Its only a
           keystroke away.
         </TypographyBody2>
         <Box
