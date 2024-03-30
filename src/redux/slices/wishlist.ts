@@ -35,8 +35,12 @@ export const wishlistSlice = createSlice({
       );
       state.wishlist = productInwishlist;
     },
+    removeAllWishlist: (state) => {
+      state.wishlist = [];
+    },
   },
 });
 
-export const { addToWishlist, removeToWishlist } = wishlistSlice.actions;
+export const { addToWishlist, removeToWishlist, removeAllWishlist } =
+  wishlistSlice.actions;
 export const wishlistReducer = wishlistSlice.reducer;

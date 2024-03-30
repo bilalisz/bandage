@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -8,13 +7,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
 
 type PropsType = {
   open: boolean;
   title: string;
   children: React.ReactNode;
   onClose: () => void;
+  actions?: React.ReactNode;
 };
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -31,6 +30,7 @@ const CustomeDialog: React.FC<PropsType> = ({
   title,
   onClose,
   children,
+  actions,
 }) => {
   return (
     <React.Fragment>
@@ -56,7 +56,7 @@ const CustomeDialog: React.FC<PropsType> = ({
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>{children}</DialogContent>
-        {/* <DialogActions>{}</DialogActions> */}
+        <DialogActions>{actions}</DialogActions>
       </BootstrapDialog>
     </React.Fragment>
   );

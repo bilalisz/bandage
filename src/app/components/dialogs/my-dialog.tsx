@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import React from "react";
 import CartProduct from "../product-detail/cart-product";
 import { Product } from "@/types/products";
@@ -12,6 +12,7 @@ type PropsType = {
   products: Product[];
   title: string;
   addMore?: boolean;
+  actions: React.ReactNode;
 };
 
 const MyDialog: React.FC<PropsType> = ({
@@ -20,10 +21,16 @@ const MyDialog: React.FC<PropsType> = ({
   products,
   title,
   addMore,
+  actions,
 }) => {
   let totalAmount = products.reduce((total, item) => total + item.price, 0);
   return (
-    <CustomeDialog title={title} open={open} onClose={onClose}>
+    <CustomeDialog
+      title={title}
+      open={open}
+      onClose={onClose}
+      actions={actions}
+    >
       <Box component="div">
         <Box component="div" className="tw-flex tw-flex-col tw-gap-3 ">
           {products.length ? (

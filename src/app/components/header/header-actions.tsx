@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import {
   CiHeart,
   CiMenuBurger,
@@ -9,8 +9,10 @@ import {
   CiUser,
 } from "react-icons/ci";
 import MenuDrawer from "../menu-drawer";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import MyDialog from "../dialogs/my-dialog";
+import { removeAllWishlist } from "@/redux/slices/wishlist";
+import { addAllToCart } from "@/redux/slices/cart";
 
 const HeaderActions = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -18,6 +20,7 @@ const HeaderActions = () => {
   const [openWishlistModal, setOpenWishlistModal] = useState<boolean>(false);
   const open = Boolean(anchorEl);
   const states = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   const cartLength = states?.cart.cart.length ? states?.cart.cart.length : "";
   const wishlistLenght = states?.wishtlist.wishlist.length
@@ -30,6 +33,13 @@ const HeaderActions = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleAddAllToCart = () => {
+    dispatch(removeAllWishlist());
+    dispatch(addAllToCart(states.wishtlist.wishlist));
+    setOpenWishlistModal(false);
+  };
+
   return (
     <>
       <Box className="tw-hidden sm:tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-text-app-blue tw-text-[14px]">
@@ -81,6 +91,14 @@ const HeaderActions = () => {
           products={states.cart.cart}
           title="Cart"
           addMore={true}
+          actions={
+            <Button
+              variant="contained"
+              className="tw-bg-app-blue tw-text-white tw-capitalize"
+            >
+              Go to checkout
+            </Button>
+          }
         />
       )}
       {openWishlistModal && (
@@ -89,6 +107,15 @@ const HeaderActions = () => {
           onClose={() => setOpenWishlistModal(false)}
           products={states.wishtlist.wishlist}
           title="Wishlist"
+          actions={
+            <Button
+              variant="contained"
+              className="tw-bg-app-blue tw-text-white tw-capitalize"
+              onClick={handleAddAllToCart}
+            >
+              Add to cart
+            </Button>
+          }
         />
       )}
     </>

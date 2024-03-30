@@ -9,6 +9,7 @@ import { Close } from "@mui/icons-material";
 import { useAppDispatch } from "@/redux/hooks";
 import { removeToCart } from "@/redux/slices/cart";
 import { removeToWishlist } from "@/redux/slices/wishlist";
+import Link from "next/link";
 
 type PropsType = {
   product: Product;
@@ -40,9 +41,10 @@ const CartProduct: React.FC<PropsType> = ({
   };
 
   return (
-    <Box className="tw-relative tw-py-5 tw-px-3">
-      <Box
-        component="div"
+    <Box className="tw-relative tw-py-5 tw-px-3 hover:tw-shadow-sm">
+      <Link
+        href={`/product/${product.id}`}
+        target="_blank"
         className="tw-flex tw-justify-between tw-items-center "
       >
         <Box component="div" className="tw-flex-1">
@@ -92,7 +94,7 @@ const CartProduct: React.FC<PropsType> = ({
             ${formatPrice(product.price)}
           </TypographyBody2>
         </Box>
-      </Box>
+      </Link>
 
       <IconButton
         className="tw-absolute tw-top-0 tw-right-0 tw-text-app-gray-900"

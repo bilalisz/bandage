@@ -55,8 +55,11 @@ export const cartSlice = createSlice({
       );
       state.cart = productInwishlist;
     },
+    addAllToCart: (state, action: PayloadAction<Product[]>) => {
+      state.cart = state.cart.concat(action.payload);
+    },
   },
 });
 
-export const { addToCart, removeToCart } = cartSlice.actions;
+export const { addToCart, removeToCart, addAllToCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
